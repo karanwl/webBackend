@@ -1,0 +1,30 @@
+/* Custom CSS goes here */
+body {
+  padding-bottom: 70px;
+  }
+  .navbar .navbar-brand img {
+    padding-top: 10px;
+    padding-bottom: 0px;
+    height: 100%;
+    width: auto;
+    
+  }
+
+  .survey_table{
+    padding-top: 5%;
+  }
+
+  .header_nav{
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar .navbar-brand {
+    padding: 0 10px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  

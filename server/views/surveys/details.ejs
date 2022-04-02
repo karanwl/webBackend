@@ -1,0 +1,137 @@
+<% include ../partials/header.ejs %>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+         <!-- Add Survey Page -->
+          <% if (title == 'Add Survey') { %>
+            <h1><%= title %></h1>
+              <form class="form" method="post">
+                <div class="form-group">
+                  <label for="NameTextField">Title</label>
+                  <input type="text" class="form-control" id="NameTextField"
+                  placeholder="Survey Name" name="Title" required>
+                </div>
+                <div class="form-group">
+                  <label for="DateTextField">Date (MM/DD/YYYY)</label>
+                  <input type="text" class="form-control" id="DateTextField"
+                  placeholder="Date" name="Date" required>
+                </div>
+                <div class="form-group">
+                  <label for="DescriptionTextField">Description</label>
+                  <input type="text" class="form-control" id="DescriptionTextField"
+                  placeholder="Survey Description" name="Description" required>
+                </div>
+                <div class="form-group">
+                  <label for="Question_1TextField">Question_1</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_1" name="Question_1" required>
+                </div>
+                 
+                 <div class="form-group">
+                  <label for="Question_2TextField">Question_2</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_2" name="Question_2" required>
+                </div>
+                 
+                 <div class="form-group">
+                  <label for="Question_3TextField">Question_3</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_3" name="Question_3" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+                <a href="/surveys" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+              </form>
+           <% } %>  
+
+           
+          <!-- Edit Survey Page -->
+          <% if (title == 'Edit Survey') { %>
+            <h1><%= title %></h1>
+              <form class="form" method="post">
+                <div class="form-group">
+                  <label for="NameTextField">Title</label>
+                  <input type="text" class="form-control" id="NameTextField"
+                  placeholder="Survey Name" name="Title" value="<%= surveys.Title %>" required>
+                </div>
+                <div class="form-group">
+                  <label for="DateTextField">Date (MM/DD/YYYY)</label>
+                  <input type="text" class="form-control" id="DateTextField"
+                  placeholder="Date" name="Date" value="<%= surveys.Date %>"  required>
+                </div>
+                <div class="form-group">
+                  <label for="DescriptionTextField">Description</label>
+                  <input type="text" class="form-control" id="DescriptionTextField"
+                  placeholder="Survey Description" name="Description" value="<%= surveys.Description %>"  required>
+                </div>
+                <div class="form-group">
+                  <label for="Question_1TextField">Question_1</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_1" name="Question_1" value="<%= surveys.Question_1 %>"  required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="Question_2TextField">Question_2</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_2" name="Question_2" value="<%= surveys.Question_2 %>"  required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="Question_3TextField">Question_3</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Question_3" name="Question_3" value="<%= surveys.Question_3 %>"  required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+                <a href="/" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+              </form>
+           <% } %> 
+
+          <!-- Answer Survey Page -->
+          <% if (title == 'Answer Survey') { %>
+            <h1><%= title %></h1>
+              <form class="form" method="post">
+                <div class="form-group">
+                  <label for="NameTextField">Survey Title: <%= surveys.Title %></label>
+                </div>
+                <div class="form-group">
+                  <label for="DateTextField">Date Created: <%= surveys.Date %></label>
+                </div>
+                <div class="form-group">
+                  <label for="DescriptionTextField">Description: <%= surveys.Description %></label>
+                </div>
+                <div class="form-group">
+                  <label for="Question_1TextField"><%= surveys.Question_1 %></label>
+                </div>
+                <div class="form-group">
+                  <label for="Answer_1TextField">Answer_1: (1-10) </label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Answer_1" name="Answer_1" value="<%= surveys.Answer_1 %>"  required>
+                </div>
+                <div class="form-group">
+                  <label for="Question_2TextField"><%= surveys.Question_2 %></label>
+                </div>
+                <div class="form-group">
+                  <label for="Answer_2TextField">Answer_2: (1-10)</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Answer_2" name="Answer_2" value="<%= surveys.Answer_2 %>"  required>
+                </div>
+                <div class="form-group">
+                  <label for="Question_3TextField"><%= surveys.Question_3 %></label>
+                </div>
+                <div class="form-group">
+                  <label for="Answer_3TextField">Answer_3: (1-10)</label>
+                  <input type="text" class="form-control" id="GenreTextField"
+                  placeholder="Answer_3" name="Answer_3" value="<%= surveys.Answer_3 %>"  required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+                <a href="/surveys" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+              </form>
+           <% } %> 
+        </div>
+      </div>
+    </div>
+
+<% include ../partials/footer.ejs %>

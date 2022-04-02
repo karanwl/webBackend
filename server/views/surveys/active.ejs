@@ -1,0 +1,54 @@
+<% include ../partials/header.ejs %>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          <h3>Active Surveys </h3>
+          
+          <br>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th class="text-center">Date</th>
+                  <th class="text-center">Description</th>
+                  
+                  
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Template Row -->
+                <% for (let count = 0; count < surveys.length; count++) { %>
+                <tr>
+                  <td><%= surveys[count].Title %></td>
+                  <td class="text-center"><%= surveys[count].Date %></td>
+                  <td class="text-center"><%= surveys[count].Description %></td>
+                  
+                  
+                <!-- ANSWER BUTTON -->
+                  <td class="text-center">
+                    <a href="/surveys/answer/<%= surveys[count]._id %>" class="bt btn-primary btn-sm">
+                     Answer Survey</a>
+                  </td>
+                <!-- DELETE BUTTON -->
+                  <td class="text-center">
+                    <a href="/surveys/delete/<%= surveys[count]._id %>" class="bt btn-danger btn-sm">
+                     Delete</a>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+           <div class="col-md-offset-1 col-md-10 text-center">
+            <ul class="pagination pagination-lg pager" id="myPager"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% include ../partials/footer.ejs %>
