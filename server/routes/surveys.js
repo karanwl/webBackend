@@ -20,7 +20,6 @@ router.get('/', (req, res, next) => {
     //     surveys: surveys
     //   });
     res.json(surveys);
-    console.log(surveys);
     }
   });
 });
@@ -130,8 +129,8 @@ router.post('/edit/:id', (req, res, next) => {
 
 // POST - process the information passed from the details form and update the document
 router.post('/answer/:id', (req, res, next) => {
-  let id = req.params.id
-
+  let id = req.body._id;
+  
   let answeredSurvey = survey({
       "_id": id,
       "Title": req.body.Title,
@@ -159,23 +158,22 @@ router.post('/answer/:id', (req, res, next) => {
   });
 });
 
-// GET - process the delete by user id
-// router.get('/delete/:id', (req, res, next) => {
-//   let id = req.params.id;
-
-//   survey.remove({_id: id}, (err) => {
-//       if(err)
-//       {
-//           console.log(err);
-//           res.end(err);
-//       }
-//       else
-//       {
-//           // refresh the survey list
-//           res.redirect('/')
-//       }
-//   });
-// });
+//GET - process the delete by user id
+router.post('/delete/:id', (req, res, next) => {
+  let id = req.params.id;
+  console.log(id);
+  survey.remove({_id: id}, (err) => {
+      if(err)
+      {
+          console.log(err);
+          res.end(err);
+      }
+      else
+      {
+          res.json({Success:"True"});
+      }
+  });
+});
 
 
 module.exports = router;
