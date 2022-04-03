@@ -8,6 +8,12 @@ let cors = require('cors');
 let compression = require('compression');
 let passport = require('passport');
 let errorHandler = require('./error-handler');
+const LocalStrategy = require('passport-local').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
+const JWTstrategy = require('passport-jwt').Strategy;
+const User = require('../models/users');
+
+const config = require('./config');
 
 //import "mongoose" - required for DB Access
 let mongoose = require('mongoose');
@@ -20,7 +26,6 @@ mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
 mongoDB.once('open', ()=> {
  console.log("Connected to MongoDB...");
 });
-
 
 // define routers
 let index = require('../routes/index'); // top level routes
@@ -45,9 +50,6 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, '../../client')));
 
-
-
-
 // route redirects
 app.use(passport.initialize());
 app.use('/', index);
@@ -66,20 +68,55 @@ app.use(function(req, res, next) {
   );
 });
 
-// catch 404 and forward to error handler
-//app.use(function(req, res, next) {
- // next(createError(404));
-//});
+passport.use(
+  'tokencheck',
+  new JWTstrategy(
+      {
+          secretOrKey: config.SECRETKEY,
+          jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+      },
+      async (token, done) => {
+          try {
+              console.log(token);
+              return done(null, token.payload);
+          } catch (error) {
+              console.log(error);
+              done(error);
+          }
+      }
+  )
+);
 
-// error handler
-//app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  //res.locals.message = err.message;
-  //res.locals.error = req.app.get('env') === 'development' ? err : {};
+passport.use(
+  'login',
+  new LocalStrategy(
+      {
+          usernameField: 'username',
+          passwordField: 'password'
+      },
+      authLocal
+  )
+);
 
-  // render the error page
-  //res.status(err.status || 500);
-  //res.render('error');
-//});
+
+function authLocal(username, password, done){
+console.log('====> authLocal function');
+
+User.findOne({username: username}, (err, user)=>{
+  if (err) {
+      return done(err);
+  }
+  
+  if (!user) {
+      return done(null, false, { message: 'Unknown user' });
+  }
+
+  if (!user.authenticate(password)) {
+      return done(null, false, { message: 'Invalid password'});
+  }
+  
+  return done(null, user);
+});
+}
 
 module.exports = app;

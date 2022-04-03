@@ -1,9 +1,9 @@
 let User = require('../models/users');
 let passport = require('passport');
-
 let jwt = require('jsonwebtoken');
-
 let config = require('../config/config');
+
+const login = require('../config/local');
 
 
 
@@ -72,14 +72,7 @@ module.exports.signup = function(req, res, next) {
  
 module.exports.signin = function(req, res, next){
     passport.authenticate(
-      // 'local',
-      'login',
-      // {   
-      //   successRedirect: req.session.url || '/',
-      //   failureRedirect: '/users/signin',
-      //   failureFlash: true
-      // })(req, res, next);
-      // delete req.session.url;
+      "login",
       async (err, user, info) => {
         try {
           if (err || !user) {
