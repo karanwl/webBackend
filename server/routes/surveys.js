@@ -35,6 +35,7 @@ router.post('/add', (req, res, next) => {
   let newSurveys = survey({
       "Title": req.body.Title,
       "Date": req.body.Date,
+      "User": req.body.User,
       "Description": req.body.Description,
       "Question_1": req.body.Question_1,
       "Answer_1": req.body.Answer_1,
@@ -86,6 +87,7 @@ router.post('/edit/:id', (req, res, next) => {
       "_id": id,
       "Title": req.body.Title,
       "Date": req.body.Date,
+      "User": req.body.User,
       "Description": req.body.Description,
       "Question_1": req.body.Question_1,
       "Answer_1": req.body.Answer_1,
@@ -135,6 +137,7 @@ router.post('/answer/:id', (req, res, next) => {
       "_id": id,
       "Title": req.body.Title,
       "Date": req.body.Date,
+      "User": req.body.User,
       "Description": req.body.Description,
       "Question_1": req.body.Question_1,
       "Answer_1": req.body.Answer_1,

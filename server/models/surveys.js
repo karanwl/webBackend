@@ -1,9 +1,11 @@
 let mongoose = require('mongoose');
+const { stringify } = require('querystring');
 
 // create a model class
 let Survey = mongoose.Schema({
     Title: String,
     Date: String,
+    User: String,
     Description: String,
     Question_1: String,
     Answer_1: String,
