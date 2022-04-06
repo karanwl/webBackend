@@ -1,3 +1,5 @@
+//User Model
+
 let mongoose=require('mongoose');
 let crypto = require('crypto');
 

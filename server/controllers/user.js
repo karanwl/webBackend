@@ -1,3 +1,5 @@
+//login controller
+
 let User = require('../models/users');
 let passport = require('passport');
 let jwt = require('jsonwebtoken');

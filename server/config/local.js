@@ -1,3 +1,5 @@
+//Added for JWT
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
