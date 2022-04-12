@@ -23,6 +23,11 @@ let UserSchema = mongoose.Schema(
                 return password && password.length > 6;
             }, 'Password should be longer']
         },
+        displayName: {
+            type: String,
+            unique: true,
+            required: 'displayName is required',
+        },
         salt: String,
         created: {
             type: Date,

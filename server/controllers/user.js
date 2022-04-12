@@ -108,7 +108,8 @@ module.exports.signin = function(req, res, next){
                 return res.json(
                   { 
                     success: true, 
-                    token: token 
+                    token: token ,
+                    user:user
                   }
                 );
               }
