@@ -19,6 +19,7 @@ router.get('/', (req, res, next) => {
     //     title: 'Surveys',
     //     surveys: surveys
     //   });
+    console.log(surveys);
     res.json(surveys);
     }
   });
@@ -82,12 +83,12 @@ router.post('/add', (req, res, next) => {
 // POST - process the information passed from the details form and update the document
 router.post('/edit/:id', (req, res, next) => {
   let id = req.params.id
+  console.log(id);
 
   let updatedSurvey = survey({
       "_id": id,
       "Title": req.body.Title,
       "Date": req.body.Date,
-      "User": req.body.User,
       "Description": req.body.Description,
       "Question_1": req.body.Question_1,
       "Answer_1": req.body.Answer_1,
@@ -106,7 +107,8 @@ router.post('/edit/:id', (req, res, next) => {
       else
       {
           // refresh the survey list
-          res.redirect('/')
+          console.log(updatedSurvey);
+          res.json("Success");
       }
   });
 });
