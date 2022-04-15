@@ -41,7 +41,7 @@ module.exports.signup = function(req, res, next) {
       user.save((err) => {
         if (err) {
           let message = getErrorMessage(err);
-          return res.status(400).json(
+          return res.status(200).json(
             {
               success: false, 
               message: message
