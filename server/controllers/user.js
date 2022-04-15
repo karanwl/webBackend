@@ -78,7 +78,7 @@ module.exports.signin = function(req, res, next){
       async (err, user, info) => {
         try {
           if (err || !user) {
-            return res.status(400).json(
+            return res.status(200).json(
                 { 
                   success: false, 
                   message: err || info.message
